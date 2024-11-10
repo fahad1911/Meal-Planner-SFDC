@@ -1,0 +1,35 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 11-10-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title="Recipe Form" icon-name="standard:recipe">
+        <div class="slds-p-around_medium">
+            <!-- Recipe Details -->
+            <lightning-input label="Recipe Name" value={recipeName} onchange={handleRecipeNameChange}></lightning-input>
+            <lightning-input label="Description" value={description} onchange={handleDescriptionChange}></lightning-input>
+            <lightning-input label="Cooking Time (minutes)" type="number" value={cookingTime} onchange={handleCookingTimeChange}></lightning-input>
+
+            <!-- Ingredient Section -->
+            <div class="slds-m-top_medium">
+                <lightning-button label="Add Ingredient" onclick={addIngredient} icon-name="utility:add"></lightning-button>
+                <template for:each={ingredients} for:item="ingredient">
+                    <div key={ingredient.id} class="slds-m-top_small">
+                        <lightning-input label="Ingredient Name" value={ingredient.name} data-id={ingredient.id} onchange={handleIngredientNameChange}></lightning-input>
+                        <lightning-input label="Quantity" type="number" value={ingredient.quantity} data-id={ingredient.id} onchange={handleIngredientQuantityChange}></lightning-input>
+                        <lightning-input label="Unit" value={ingredient.unit} data-id={ingredient.id} onchange={handleIngredientUnitChange}></lightning-input>
+                        <lightning-button-icon icon-name="utility:delete" alternative-text="Remove" onclick={removeIngredient} data-id={ingredient.id}></lightning-button-icon>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Save Button -->
+            <div class="slds-m-top_medium">
+                <lightning-button variant="brand" label="Save Recipe" onclick={saveRecipe}></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>
